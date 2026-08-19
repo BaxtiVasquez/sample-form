@@ -92,11 +92,19 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
-main > p {
+.submission-result {
   margin-top: 28px;
+  text-align: center;
+}
+
+.submission-result p {
+  margin: 8px 0;
   color: #101522;
   font-size: 14px;
-  text-align: center;
+}
+
+.submission-result button {
+  width: 100%;
 }
 
 @media (max-width: 480px) {

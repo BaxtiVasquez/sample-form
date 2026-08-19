@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import './App.css'
 
 function App() {
   const [answer, setAnswer] = useState('')
+  const [submittedAt, setSubmittedAt] = useState(null)
+  const formRef = useRef(null)
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -17,6 +19,13 @@ function App() {
 
     JSON.stringify(submission)
     setAnswer(submission.answer)
+    setSubmittedAt(new Date(submission.dateTime))
+  }
+
+  function handleTryAgain() {
+    setAnswer('')
+    setSubmittedAt(null)
+    formRef.current.reset()
   }
 
   return (
@@ -25,7 +34,7 @@ function App() {
         <img src="/logo.png" alt="Aidea" />
         <p style={{ fontFamily: 'Arial', fontStyle: 'italic', fontSize: '16px', marginBottom: '0', padding: '0' }}>Together, we design what's next.</p>
       </header>
-      <form onSubmit={handleSubmit} style={{marginTop: '1px' }}>
+      <form ref={formRef} onSubmit={handleSubmit} style={{marginTop: '1px' }}>
         <div className="form-container">
           <label htmlFor="name">Name</label>
           <input id="name" name="name" type="text" placeholder="Your name" required />
@@ -44,7 +53,13 @@ function App() {
           <button type="submit">Submit</button>
         </div>
       </form>
-      {answer !== '' && <p>{answer} times a week</p>}
+      {submittedAt && (
+        <div className="submission-result">
+          <p>{answer} times a week</p>
+          <p>Submitted: {submittedAt.toLocaleString()}</p>
+          <button type="button" onClick={handleTryAgain}>Try another submission</button>
+        </div>
+      )}
     </main>
   )
 }
