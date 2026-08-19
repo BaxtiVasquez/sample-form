@@ -23,7 +23,7 @@ function App() {
     <main>
       <header className="brand" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '0px', padding: '0px' }}>
         <img src="/logo.png" alt="Aidea" />
-        <p style={{ fontFamily: 'Arial', fontSize: '20px', marginBottom: '0', padding: '0' }}>Together, we design what's next.</p>
+        <p style={{ fontFamily: 'Arial', fontStyle: 'italic', fontSize: '16px', marginBottom: '0', padding: '0' }}>Together, we design what's next.</p>
       </header>
       <form onSubmit={handleSubmit} style={{marginTop: '1px' }}>
         <div className="form-container">
